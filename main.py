@@ -7,7 +7,7 @@ app = FastAPI()
 
 
 @app.get("/health")
-def health():
+async def health():
     return {"status": "ok"}
 
 @app.post("/csv-to-excel")
