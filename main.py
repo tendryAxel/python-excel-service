@@ -11,11 +11,11 @@ async def health():
     return {"status": "ok"}
 
 @app.post("/csv-to-excel")
-def csv_to_excel(
+async def csv_to_excel(
         file: UploadFile = File(...),
         temp_file = Depends(generate_temp_file(".xlsx")),
 ):
-    converter.csv_to_excel(file, temp_file)
+    await converter.csv_to_excel(file, temp_file)
     return responses.FileResponse(
         temp_file.file.name,
         media_type="application/vnd.ms-excel",
